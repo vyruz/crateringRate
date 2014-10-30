@@ -8,9 +8,9 @@ craters = [0]
 time = 0
 crater = 0.0
 EMPTY = '.'
-CENTER = 'C'
+CENTER = 'X'
 CRATER = ' '
-DEBRIS = '/'
+DEBRIS = '+'
 
 grid = [[EMPTY for x in xrange(SIZE)] for x in xrange(SIZE)]
 
@@ -199,9 +199,9 @@ def checkSat(craters, time):
         else:
             curAvg = craters[time] / time
             oldAvg = craters[time/2] / (time/2)
-    #if(abs(craters[time] - craters[time/2] ) < craters[time]*.05):    
-    if((curAvg+oldAvg) < (curAvg * 1.05)):
-        print "curAvg=", curAvg, " oldAvg=",oldAvg
+    if(abs(craters[time] - craters[time/2] ) < craters[time/2]*.05):    
+    #if(abs(curAvg-oldAvg) < (curAvg * 0.05)):
+        #print "curAvg=", curAvg, " oldAvg=",oldAvg, " cur+old=",curAvg-oldAvg, " cur*1.05=",curAvg*0.05
         # print("craters[time]: ", craters[time], " craters[time/2]: ", craters[time/2], " craters[time/2]*.05: ", craters[time/2]*.05)
         if(craters[time] < 10):
             return False
@@ -216,15 +216,15 @@ while not checkSat(craters, time):
     if(impact == 129):
         grid = makeImpact(grid)
     craters.append(numCraters(grid))
-    if(time % 1000 == 0):
+    if(time % 500 == 0):
         print "Time = ", time, " Number of craters= ", craters[time]
         for x in grid:
-            print x
+            print(' '.join(x))
     time += 1
 
-
+print "\n------------------------------------------------------------results-----------------------------------------------------------"
 for x in grid:
-    print x
+    print(' '.join(x))
 print"number of craters: ", numCraters(grid)
 print "Time to saturation: ", time
 
