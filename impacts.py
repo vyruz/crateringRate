@@ -7,10 +7,10 @@ craterSize = SIZE/10
 craters = [0]
 time = 0
 crater = 0.0
-EMPTY = '.'
+EMPTY = '|'
 CENTER = 'X'
 CRATER = ' '
-DEBRIS = '+'
+DEBRIS = '-'
 
 grid = [[EMPTY for x in xrange(SIZE)] for x in xrange(SIZE)]
 
@@ -29,7 +29,7 @@ def makeImpact(grid):
     #print("imp_i: ", imp_i, " imp_j: ", imp_j)
 
     for i in range((craterSize/2)+2):
-        for j in range((craterSize/2)+2):
+        for j in range(((craterSize/2)+2)-i):
             if(imp_i+i >= SIZE):
                 if(imp_j+j >= SIZE):
                     grid[imp_i][imp_j-j] = DEBRIS
@@ -104,7 +104,7 @@ def makeImpact(grid):
                 grid[imp_i+i][imp_j +j] = DEBRIS
 
     for i in range((craterSize/2)+1):
-        for j in range((craterSize/2)+1):
+        for j in range(((craterSize/2)+1)-i):
             if(imp_i+i >= SIZE):
                 if(imp_j+j >= SIZE):
                     grid[imp_i][imp_j-j] = CRATER
