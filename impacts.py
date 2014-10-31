@@ -29,7 +29,7 @@ def makeImpact(grid):
     #print("imp_i: ", imp_i, " imp_j: ", imp_j)
 
     for i in range((craterSize/2)+2):
-        for j in range(((craterSize/2)+2)-i):
+        for j in range(((craterSize/2)+2)-i/2):
             if(imp_i+i >= SIZE):
                 if(imp_j+j >= SIZE):
                     grid[imp_i][imp_j-j] = DEBRIS
@@ -104,7 +104,7 @@ def makeImpact(grid):
                 grid[imp_i+i][imp_j +j] = DEBRIS
 
     for i in range((craterSize/2)+1):
-        for j in range(((craterSize/2)+1)-i):
+        for j in range(((craterSize/2)+1)-i/2):
             if(imp_i+i >= SIZE):
                 if(imp_j+j >= SIZE):
                     grid[imp_i][imp_j-j] = CRATER
