@@ -8,9 +8,9 @@ craters = [0]
 time = 0
 crater = 0.0
 EMPTY = '-'
-CENTER = 'X'
+CENTER = 'O'
 CRATER = ' '
-DEBRIS = 'o'
+DEBRIS = 'x'
 
 grid = [[EMPTY for x in xrange(SIZE)] for x in xrange(SIZE)]
 
@@ -224,7 +224,7 @@ while not checkSat(craters, time):
 
 print "\n------------------------------------------------------------results-----------------------------------------------------------"
 for x in grid:
-    print(''.join(x))
+    print(' '.join(x))
 print"number of craters: ", numCraters(grid)
 print "Time to saturation: ", time
 
