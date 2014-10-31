@@ -7,10 +7,10 @@ craterSize = SIZE/10
 craters = [0]
 time = 0
 crater = 0.0
-EMPTY = '|'
+EMPTY = '-'
 CENTER = 'X'
 CRATER = ' '
-DEBRIS = '-'
+DEBRIS = '/'
 
 grid = [[EMPTY for x in xrange(SIZE)] for x in xrange(SIZE)]
 
