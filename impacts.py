@@ -30,7 +30,7 @@ CRATER = ' '
 DEBRIS = 'x'
 
 # initialize empty, uncratered grid
-grid = [[EMPTY for x in xrange(SIZE)] for x in xrange(SIZE)]
+grid = [[EMPTY for x in range(SIZE)] for x in range(SIZE)]
 
 # function that goes through the grid and counts the number of crater centers
 def numCraters(grid):
@@ -41,15 +41,15 @@ def numCraters(grid):
                 crater += 1.0
     return crater
 
-# Randomly pick a spot on the grid and make a crater centering at this location. 
+# Randomly pick a spot on the grid and make a crater centering at this location.
 def makeImpact(grid):
     imp_i = random.randrange(0, SIZE-1)
-    imp_j = random.randrange(0, SIZE-1)    
+    imp_j = random.randrange(0, SIZE-1)
 
-    for i in range((craterSize/2)+2):
-        for j in range(((craterSize/2)+2)-i/2):
+    for i in range(int((craterSize/2))+2):
+        for j in range(int(((craterSize//2)+2)-i/2)):
             # must ensure that you won't write outside of the grid, if the center is near an edge of the grid
-            
+
             # create circle of debris first, as this is the largest circle
             if(imp_i+i >= SIZE):
                 if(imp_j+j >= SIZE):
@@ -61,7 +61,7 @@ def makeImpact(grid):
                     grid[imp_i-i][imp_j] = DEBRIS
                     grid[imp_i-i][imp_j+j] = DEBRIS
                 if(imp_j+j < SIZE and imp_j-j > 0):
-                    if(imp_j+j >= SIZE): print SIZE
+                    if(imp_j+j >= SIZE): print( SIZE)
                     grid[imp_i][imp_j-j] = DEBRIS
                     grid[imp_i][imp_j+j] = DEBRIS
                     grid[imp_i-i][imp_j-j] = DEBRIS
@@ -72,17 +72,17 @@ def makeImpact(grid):
                     grid[imp_i][imp_j-j] = DEBRIS
                     grid[imp_i+i][imp_j-j] = DEBRIS
                     grid[imp_i+i][imp_j] = DEBRIS
-                if(imp_j-j < 0):                         
+                if(imp_j-j < 0):
                     grid[imp_i][imp_j+j] = DEBRIS
                     grid[imp_i+i][imp_j] = DEBRIS
                     grid[imp_i+i][imp_j+j] = DEBRIS
-                if(imp_j+j < SIZE and imp_j-j>0):                
-                    if(imp_j+j >= SIZE): print SIZE
+                if(imp_j+j < SIZE and imp_j-j>0):
+                    if(imp_j+j >= SIZE): print( SIZE)
                     grid[imp_i][imp_j-j] = DEBRIS
                     grid[imp_i][imp_j+j] = DEBRIS
                     grid[imp_i+i][imp_j-j] = DEBRIS
                     grid[imp_i+i][imp_j+j] = DEBRIS
-                        
+
             if(imp_j+j >= SIZE):
                 if(imp_i+i >= SIZE):
                     grid[imp_i-i][imp_j] = DEBRIS
@@ -101,7 +101,7 @@ def makeImpact(grid):
                     grid[imp_i+i][imp_j-j] = DEBRIS
 
             if(imp_j-j <= 0):
-                if(imp_i+i >= SIZE):                    
+                if(imp_i+i >= SIZE):
                     grid[imp_i-i][imp_j] = DEBRIS
                     grid[imp_i-i][imp_j+j] = DEBRIS
                     grid[imp_i][imp_j+j] = DEBRIS
@@ -113,8 +113,8 @@ def makeImpact(grid):
                     grid[imp_i-i][imp_j] = DEBRIS
                     grid[imp_i+i][imp_j] = DEBRIS
                     grid[imp_i-i][imp_j+j] = DEBRIS
-                    grid[imp_i+i][imp_j+j] = DEBRIS     
-           
+                    grid[imp_i+i][imp_j+j] = DEBRIS
+
             if(imp_j+j < SIZE and imp_j-j >=0 and imp_i +i < SIZE and imp_i - i >=0):
                 grid[imp_i-i][imp_j-j] = DEBRIS
                 grid[imp_i+i][imp_j-j] = DEBRIS
@@ -122,8 +122,8 @@ def makeImpact(grid):
                 grid[imp_i+i][imp_j +j] = DEBRIS
 
     # make a smaller circle within the debris circle for the actual crater
-    for i in range((craterSize/2)+1):
-        for j in range(((craterSize/2)+1)-i/2):
+    for i in range(int((craterSize/2)+1)):
+        for j in range(int(((craterSize/2)+1)-i/2)):
             if(imp_i+i >= SIZE):
                 if(imp_j+j >= SIZE):
                     grid[imp_i][imp_j-j] = CRATER
@@ -144,7 +144,7 @@ def makeImpact(grid):
                     grid[imp_i][imp_j-j] = CRATER
                     grid[imp_i+i][imp_j-j] = CRATER
                     grid[imp_i+i][imp_j] = CRATER
-                if(imp_j-j < 0):                         
+                if(imp_j-j < 0):
                     grid[imp_i][imp_j+j] = CRATER
                     grid[imp_i+i][imp_j] = CRATER
                     grid[imp_i+i][imp_j+j] = CRATER
@@ -153,7 +153,7 @@ def makeImpact(grid):
                     grid[imp_i][imp_j+j] = CRATER
                     grid[imp_i+i][imp_j-j] = CRATER
                     grid[imp_i+i][imp_j+j] = CRATER
-                        
+
             if(imp_j+j >= SIZE):
                 if(imp_i+i >= SIZE):
                     grid[imp_i-i][imp_j] = CRATER
@@ -186,17 +186,17 @@ def makeImpact(grid):
                     grid[imp_i-i][imp_j] = CRATER
                     grid[imp_i+i][imp_j] = CRATER
                     grid[imp_i-i][imp_j+j] = CRATER
-                    grid[imp_i+i][imp_j+j] = CRATER     
-           
+                    grid[imp_i+i][imp_j+j] = CRATER
+
             if(imp_j+j < SIZE and imp_j-j >=0 and imp_i +i < SIZE and imp_i - i >=0):
                 grid[imp_i-i][imp_j-j] = CRATER
                 grid[imp_i+i][imp_j-j] = CRATER
                 grid[imp_i-i][imp_j +j] = CRATER
-                grid[imp_i+i][imp_j +j] = CRATER           
+                grid[imp_i+i][imp_j +j] = CRATER
 
         grid[imp_i][imp_j] = CENTER   #finally place the center at the center of the impact
     return grid
-    
+
 
 #returns true if there is saturation (ie less that 5% change when time doubles)
 def checkSat(craters, time):
@@ -209,8 +209,8 @@ def checkSat(craters, time):
             oldAvg = 0.0
         else:
             curAvg = craters[time] / time
-            oldAvg = craters[time/2] / (time/2)
-    if(abs(craters[time] - craters[time/2]) < craters[time/2]*0.05):    
+            oldAvg = craters[time//2] / (time/2)
+    if(abs(craters[time] - craters[time//2]) < craters[time//2]*0.05):
     #if(abs(curAvg-oldAvg) < (curAvg * 0.05)):
         #print "curAvg=", curAvg, " oldAvg=",oldAvg, " cur+old=",curAvg-oldAvg, " cur*1.05=",curAvg*0.05
         # print("craters[time]: ", craters[time], " craters[time/2]: ", craters[time/2], " craters[time/2]*.05: ", craters[time/2]*.05)
@@ -232,20 +232,20 @@ while not checkSat(craters, time):
         grid = makeImpact(grid)
     craters.append(numCraters(grid))
     if(time % 30000 == 0):
-        print "\nTime = ", time, " Number of Craters= ", craters[time]
+        print( "\nTime = ", time, " Number of Craters= ", craters[time])
         for x in grid:
             print(' '.join(x))
     time += 1
 
-print "\n------------------------------------------------------------results-----------------------------------------------------------"
+print( "\n------------------------------------------------------------results-----------------------------------------------------------")
 for x in grid:
     print(' '.join(x))
-print "Number of Craters: ", numCraters(grid)
-print "Years to Saturation: ", time
-print "Time  |  Number of Craters"
+print( "Number of Craters: ", numCraters(grid))
+print( "Years to Saturation: ", time)
+print( "Time  |  Number of Craters")
 for i in range(len(craters)):
    if(i % 10000 == 0):
         toprint = ""
         for x in range(int(craters[i])):
             toprint += "*"
-        print i, " | ", toprint, " ", craters[i]
+        print( i, " | ", toprint, " ", craters[i])
